@@ -69,9 +69,6 @@ app.use('/', webRoutes);
 
 app.use(responder.respond);
 app.use(responder.notFound);
-if (process.env.NODE_ENV !== 'development') {
-  app.use(Raven.errorHandler());
-}
 app.use(responder.error);
 
 
