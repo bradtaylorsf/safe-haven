@@ -78,12 +78,12 @@ function Responder(config) {
   this.respond = (req, res, next) => {
     logger.log('info', `Responding to: ${req.originalUrl}`);
     logger.log('info', `Environment: ${config.server.env}`);
-    if (_.isUndefined(res.locals) || _.isUndefined(res.locals.data) || _.isEmpty(res.locals.data)) {
-      next();
-    } else if (isJson(req)) {
+    if (isJson(req)) {
       json(res);
     } else if (!_.isEmpty(res.locals.view)) {
       html(res);
+    } else {
+      next();
     }
   };
 

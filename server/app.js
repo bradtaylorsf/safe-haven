@@ -14,9 +14,20 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const authController = require('./controllers/auth');
 const User = require('./models/User');
 const config = require('./config');
+
+// Connect to Database
+// TODO: If a connection to the DB is unsuccesful
+// We need to assume the user is not logged in and
+// adjust accordingly
+// Send the error to Sentry
+mongoose.Promise = global.Promise;
+mongoose.connect(config.mongodb.uri, {
+  useMongoClient: true,
+}).then(() => console.log('connection succesful'))
+  .catch(err => console.error(err));
+
 
 const Responder = require('./middleware/responder');
 
@@ -34,6 +45,20 @@ app.use(statusMonitor());
 app.use(helmet());
 app.use(morgan('dev'));
 
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 if (process.env.NODE_ENV === 'development') {
   app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath, // => '/'
@@ -48,6 +73,7 @@ if (process.env.NODE_ENV === 'development') {
 
 
 const hbshelpers = require('../client/views/hbshelpers');
+
 const hbs = exphbs.create({
   defaultLayout: 'wrapper',
   layoutsDir: path.join(__dirname, '../client/views/layouts'),

@@ -15,41 +15,21 @@ const register = (accessToken, refreshToken, profile) => {
 
 
 const authenticate = (req, res, next) => {
-  passport.authenticate('optimizely', (err, user) => {
-    debugger;
+  passport.authenticate('local', (err, user) => {
     req.login(user, (error) => {
       if (error) {
         next(error);
       } else {
-        res.redirect('/academy/auth/profile');
+        res.redirect('/profile');
       }
     });
   })(req, res);
 };
 
-const oauth = (accessToken, refreshToken, profile, done) => {
-  // Find a user by the username
-  debugger;
-  User.findByUsername(profile.username, (err, existingUser) => {
-    if (err) {
-      done(err);
-    }
-
-    // If the user does not exists, create a profile for the user
-    if (!existingUser) {
-      // Register a new User
-      register(accessToken, refreshToken, profile)
-      .then((newUser) => {
-        done(null, newUser);
-      }).catch((error) => {
-        done(error);
-      });
-    } else {
-      // User exists so log that user in
-      done(null, existingUser);
-    }
-  });
+const login = (req, res, next) => {
+  next();
 };
+
 
 // Middleware to check if the user is logged in
 const isLoggedIn = (req, res, next) => {
@@ -57,12 +37,13 @@ const isLoggedIn = (req, res, next) => {
     next();
   } else {
     // if they aren't redirect them someplace to login
-    res.redirect('/academy');
+    res.redirect('/login');
   }
 };
 
 module.exports = {
   authenticate,
-  oauth,
+  register,
+  login,
   isLoggedIn,
 };
