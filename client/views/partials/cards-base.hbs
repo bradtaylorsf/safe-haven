@@ -1,0 +1,29 @@
+<section class="cards cards--base card-deck">
+  <div class="card">
+    <h3>Ready to be a part of Opticon?</h3>
+    <a href="http://www.cvent.com/d/b5q1zd/4W?RefID=website" class="btn btn-primary" target="_blank" rel="noopener">Book Tickets</a>
+  </div>
+  <div class="card">
+    <h3>Stay Updated</h3>
+    <form class="form marketo" id="opticon-contact-form" data-mktoid="2548" data-parsley-validate novalidate autocomplete="false">
+      {{> marketo_db_fields }}
+      <input type="text" name="first_name" data-mktoname="FirstName" placeholder="First Name" required autocomplete="false">
+      <input type="text" name="last_name" data-mktoname="LastName" placeholder="Last Name" required autocomplete="false">
+      <input type="text" name="company" data-mktoname="Company" placeholder="Company" required autocomplete="false">
+      <input type="email" name="email" data-mktoname="Email" placeholder="Email" required autocomplete="false" data-parsley-type="email">
+      <button type="submit" class="btn btn-primary" data-form-id="opticon-stay-updated" data-button-text="">Submit</button>
+    </form>
+    <small>By clicking the button, you are agreeing to Optimizely's <a href="https://www.optimizely.com/terms" target="_blank" rel="noopener">Terms of Service</a> and <a href="https://www.optimizely.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. You’ll receive emails and communications from Optimizely and our affiliates and partners regarding products, news, updates, promotions and events. You can unsubscribe anytime by clicking <a href="http://pages.optimizely.com/subscription-center.html">here</a> or by contacting us at the address below.</small>
+  </div>
+  <div class="card">
+    <h3>Share</h3>
+    <p class="hashtag"><a href="https://twitter.com/search?f=tweets&q=%23opticon2017" target="_blank" rel="noopener">#OPTICON2017</a></p>
+    <a href="mailto:opticon2017@optimizely.com">Opticon2017@optimizely.com</a>
+    <ul class="social-links">
+      <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://optimize.ly/1Cm9dGL" class="icon-facebook text-hide" target="_blank" rel="noopener">Facebook</a></li>
+      <li><a href="https://twitter.com/intent/tweet?text=I%27ll%20be%20attending%20%23opticon2017,%20join%20me%20http%3A//optimize.ly/1Cm9dGL%20%40optimizely" class="icon-twitter text-hide" target="_blank" rel="noopener">Twitter</a></li>
+      <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=http://optimize.ly/1Cm9dGL" class="icon-linkedin text-hide" target="_blank" rel="noopener">Linkedin</a></li>
+      <li><a href="https://plus.google.com/share?url=http://optimize.ly/1Cm9dGL" class="icon-googleplus text-hide" target="_blank" rel="noopener">Google+</a></li>
+    </ul>
+  </div>
+</section>

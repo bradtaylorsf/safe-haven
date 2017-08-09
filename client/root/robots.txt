@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /l/
+
+Sitemap: https://www.safe-haven.com/sitemap.xml

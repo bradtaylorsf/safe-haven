@@ -1,0 +1,74 @@
+/* ====================
+  Module/Hero
+  ===================== */
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 240px;
+  margin: 80px auto 120px;
+  &.hero--billboard {
+    position: relative;
+    min-height: 600px;
+    margin: 0 auto;
+    .hero-content {
+      h1 {
+        margin: 0 auto 20px;
+      }
+    }
+    .hero-content {
+      top: 180px;
+      transform: translatex(-50%);
+    }
+    h2 {
+      font-size: 36px;
+    }
+    @include media-breakpoint-down(sm) {
+      z-index: 1;
+      padding-top: 80px;
+      margin-bottom: 20px;
+      .hero-content {
+        top: 140px;
+        width: calc(100% - 40px);
+      }
+      h2 {
+        width: 80%;
+        margin: 40px auto 0;
+        font-size: 24px;
+      }
+    }
+  }
+  &.hero-split {
+    > div {
+      position: relative;
+      width: 50%;
+      height: 100%;
+    }
+    .hero-content {
+      width: 75%;
+    }
+  }
+  &.hero--full {
+    max-width: 100%;
+  }
+  .hero-content {
+    @include center-both;
+  }
+  .hero-content {
+    max-width: 800px;
+    h1 {
+      margin-bottom: 30px;
+      font-size: 36px;
+      font-weight: 400;
+    }
+    p {
+      margin: 0 auto 40px;
+      font-size: 22px;
+    }
+  }
+  .btn {
+    margin: 0 10px;
+  }
+}

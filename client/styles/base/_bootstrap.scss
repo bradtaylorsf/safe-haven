@@ -1,0 +1,68 @@
+/* ====================
+  Custom/Bootstrap
+  ===================== */
+
+/* Overrides */
+.btn {
+  width: auto;
+  min-width: 220px;
+  padding: 13px 20px;
+  border-radius: 2px;
+  border-width: 2px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.btn-primary {
+  background-color: #00B5FF;
+  border-color: #00B5FF;
+}
+.btn-outline-primary {
+  border-color: #00B5FF;
+  color: #00B5FF;
+}
+.btn-outline-secondary {
+  border-color: #00B5FF;
+  color: #fff;
+}
+
+.card {
+  background-color: transparent;
+  border: 0;
+}
+
+.nav {
+  border: 0;
+}
+.nav-tabs .nav-link {
+  border: 0;
+  color: #00b5ff;
+  &.active {
+    background-color: transparent;
+    color: #00b5ff;
+    font-weight: 500;
+  }
+}
+
+.modal-content {
+  border-radius: 0;
+  .close {
+    display: none;
+  }
+}
+.modal-header {
+  background-image: linear-gradient(135deg, #ed1c89, #fd6a59);
+  color: #fff;
+}
+.modal-body {
+  min-height: 140px;
+  padding: 30px;
+  color: #333;
+  font-size: 18px;
+}
+.modal-footer .btn {
+  min-width: auto;
+  padding: 10px 20px;
+  font-size: 1em;
+}

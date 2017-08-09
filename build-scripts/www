@@ -1,0 +1,125 @@
+#!/usr/bin/env node
+/**
+ * Module dependencies.
+ */
+
+const app = require('../server/app');
+const config = require('../server/config');
+const http = require('http');
+const request = require('request');
+const Logger = require('../server/controllers/logger');
+
+const logger = new Logger(config);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app);
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = typeof port === 'string'
+    ? `Pipe ${port}`
+    : `Port ${port}`;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      logger.log('error', {
+        msg: `${bind} requires elevated privileges`,
+      });
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      logger.log('error', {
+        msg: `${bind} is already in use`,
+      });
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === 'string'
+    ? `pipe ${addr}`
+    : `port ${addr.port}`;
+  logger.log('info', {
+    msg: `Listening on ${bind}`,
+  });
+}
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Purge all Fastly cache after server starts
+ */
+
+if (process.env.NODE_ENV === 'staging' || process.env.NODE_ENV === 'production') {
+  // Only run on staging and production
+  if (process.env.FASTLY_API && process.env.FASTLY_SPACE_ID) {
+    // Only run if the proper environment variables are set on the server
+    request({
+      url: `https://api.fastly.com/service/${process.env.FASTLY_SPACE_ID}/purge_all`,
+      method: 'POST',
+      headers: {
+        'Fastly-Key': process.env.FASTLY_API,
+        Accept: 'application/json',
+      },
+    }, (error, response, body) => {
+      if (error) {
+        logger.log('error', error);
+      } else {
+        logger.log('info', 'Fastly Cache Purged');
+        logger.log('info', body);
+      }
+    });
+  }
+}

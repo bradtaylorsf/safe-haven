@@ -1,0 +1,51 @@
+/* ====================
+  Common/Footer
+  ===================== */
+
+body {
+  > footer {
+    @include clearfix;
+    max-width: 1380px;
+    margin: 40px auto;
+    padding: 0 40px;
+    @include media-breakpoint-down(md) {
+      padding: 0 20px;
+    }
+    li {
+      &:first-child {
+        float: left;
+      }
+      &:last-child {
+        float: right;
+      }
+      @include media-breakpoint-down(sm) {
+        float: none !important;
+        margin-bottom: 20px;
+      }
+    }
+    a,
+    a:hover {
+      margin-right: 20px;
+      color: #FFF;
+    }
+    a,
+    .copyright {
+      font-size: 18px;
+    }
+  }
+  &.gradient > footer .logo-optimizely {
+    display: block;
+    margin: 0;
+  }
+  &.grey > footer {
+    .logo-optimizely {
+      display: block;
+      margin: 0;
+      background-image: url('https://res.cloudinary.com/dy8i0qezub/image/upload/opticon/2017/optimizely_logo.png');
+    }
+    a,
+    .copyright {
+      color: #0081BA;
+    }
+  }
+}

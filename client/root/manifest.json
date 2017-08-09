@@ -1,0 +1,32 @@
+{
+  "short_name": "Safe Haven",
+  "name": "Safe Haven",
+  "description": "A platform to help bay area women find a safe home",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dy8i0qezub/image/upload/v1492628866/opticon/2017/touch/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/dy8i0qezub/image/upload/v1498796067/touch/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/dy8i0qezub/image/upload/v1498796067/touch/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/dy8i0qezub/image/upload/v1498796067/touch/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAFAFA",
+  "theme_color": "#0081ba"
+}

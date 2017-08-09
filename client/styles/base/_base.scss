@@ -1,0 +1,103 @@
+/* ====================
+  Base
+  ===================== */
+
+// Site variables
+$desktop-min-width: 1440px;
+
+body {
+  position: relative;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: #f7f7f7;
+  color: #666;
+  font: 300 16px/1.5 'Proxima Nova', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  &.gradient {
+    background-color: #506afa;
+    background-repeat: no-repeat;
+    @include media-breakpoint-down(sm) {
+      background-image: linear-gradient(180deg, #506afa, #39b0d0);
+    }
+    @include media-breakpoint-up(sm) {
+      background-image: linear-gradient(150deg, #506afa, #39b0d0);
+    }
+    color: #fff;
+    .bg-dots {
+      opacity: .04;
+      filter: invert(100%);
+    }
+  }
+  &.grey {
+    h1,
+    h2 {
+      color: #00b5ff;
+    }
+    h2 {
+      font-size: 36px;
+    }
+  }
+}
+
+main {
+  display: inline-block;
+  width: 100%;
+}
+
+main > section:not(.hero--billboard):first-child {
+  margin-top: 180px;
+  margin-bottom: 0;
+  @include media-breakpoint-down(sm) {
+    margin-top: 140px;
+    margin-bottom: 60px;
+  }
+  > h1 {
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .hero-content {
+    position: relative;
+    width: 100%;
+    top: auto;
+    left: auto;
+    transform: initial;
+    @include media-breakpoint-down(sm) {
+      .btn {
+        margin: 0 auto 20px;
+        max-width: 400px;
+      }
+    }
+  }
+}
+
+h1,
+h2 {
+  font-weight: 500;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  max-width: 1440px;
+  margin: 120px auto;
+  text-align: center;
+  @include media-breakpoint-down(sm) {
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+  &.section--slim {
+    max-width: 960px;
+  }
+  > h2 {
+    flex: 1 100%;
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: 400;
+  }
+}

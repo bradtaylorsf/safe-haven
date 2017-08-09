@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+// 1. Framework
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+// @import '~bootstrap/scss/bootstrap';
+
+// 2. Base config
+@import 'base/mixins';
+@import 'base/base';
+@import 'base/common';
+@import 'base/bootstrap'; // Overrides
+@import 'base/ie';
+
+// 3. Partials
+@import 'partials/header';
+@import 'partials/footer';
+
+// 4. Modules
+@import 'modules/accordion';
+@import 'modules/cards';
+@import 'modules/hero';
+
+// 5. Pages
+@import 'pages/404';
+@import 'pages/home';

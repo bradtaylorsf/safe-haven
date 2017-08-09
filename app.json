@@ -1,0 +1,26 @@
+{
+  "name": "safe-haven",
+  "scripts": {
+  },
+  "env": {
+    "MONGODB_URI": {
+      "required": true
+    },
+    "NODE_MODULES_CACHE": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

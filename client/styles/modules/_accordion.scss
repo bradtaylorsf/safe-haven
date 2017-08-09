@@ -1,0 +1,54 @@
+/* ====================
+  Components/Accordion
+  ===================== */
+
+  .accordion {
+    background-color: #fff;
+    border: 1px solid #0AB6FF;
+    border-top: 0;
+    font-size: 18px;
+    text-align: left;
+    .card-header {
+      padding: 0;
+      background-color: transparent;
+      border: 0;
+      border-top: 1px solid #0AB6FF;
+      border-radius: 0;
+    }
+    .card-block {
+      padding-top: 0;
+      padding-bottom: 6px;
+      color: #666;
+      @include media-breakpoint-down(sm) {
+        flex-direction: column;
+      }
+    }
+    h5 a {
+      display: block;
+      height: 100%;
+      padding: 15px 15px 15px 50px;
+      color: #0081BA;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.6;
+      &:before {
+        content: '';
+        float: left;
+        width: 22px;
+        height: 22px;
+        margin: 2px -15px 0 -35px;
+        vertical-align: top;
+        background: url('https://res.cloudinary.com/dy8i0qezub/image/upload/v1492020197/opticon/2017/open-close.svg') no-repeat 0 0;
+      }
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+      &.collapsed:before {
+        background-position: 0 0;
+      }
+      &:not(.collapsed):before {
+        background-position: 0 -22px;
+      }
+    }
+  }

@@ -1,0 +1,26 @@
+/* ====================
+  Base/IE
+  ===================== */
+
+.ie {
+  &.ie-11 {
+    .card-deck {
+      flex-flow: row nowrap;
+      @include media-breakpoint-down(xl) {
+        margin-left: 7%;
+      }
+    }
+    .cards--base .card {
+      max-width: 30% !important;
+      min-width: 360px;
+    }
+    @include media-breakpoint-down(md) {
+      .card-deck {
+        flex-flow: column wrap;
+      }
+      .cards--base .card {
+        max-width: 100% !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["last 2 versions", "ie >= 11"]
+      }
+    }],
+    ["es2015", {"modules": false}],
+    "stage-0"
+  ],
+  "plugins": [
+  ],
+  "env": {
+    "test": {
+    },
+    "development": {
+    },
+    "production": {
+    }
+  }
+}

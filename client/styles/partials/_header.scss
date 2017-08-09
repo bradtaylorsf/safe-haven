@@ -1,0 +1,176 @@
+/* ====================
+  Common/Header
+  ===================== */
+
+header {
+  z-index: 1030;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 90px;
+  overflow: hidden;
+  background-color: #262e45;
+  color: #fff;
+  @include media-breakpoint-down(md) {
+    height: 70px;
+  }
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    text-align: left;
+    &:before {
+      content: "|||";
+      position: absolute;
+      color: #fff;
+      font-size: 30px;
+      letter-spacing: 2px;
+      transform: rotate(90deg);
+      transform-origin: 50% 50%;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    .logo-optimizely {
+      margin: 20px 0 0 20px;
+    }
+  }
+  nav {
+    justify-content: space-between;
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  ul {
+    display: flex;
+    width: 100%;
+    margin: 0 3%;
+    text-align: center;
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+    @include media-breakpoint-between(md, lg) {
+      margin: 0 10px 0 0;
+      li a {
+        font-size: 16px;
+      }
+    }
+  }
+  li {
+    display: inline-block;
+    margin: 33px 0 30px;
+    a {
+      padding: 5px 8px;
+      white-space: nowrap;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      &:focus,
+      &:hover,
+      &.active {
+        color: #00b5ff;
+      }
+      &:focus,
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .book-tickets {
+    position: relative;
+    width: 220px;
+    height: 100%;
+    padding: 22px 0;
+    border: 0;
+    border-radius: 0;
+    color: #fff;
+    overflow: hidden;
+    &:after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      display: block;
+      width: 440px;
+      height: 100%;
+      background: linear-gradient(45deg, rgb(237, 30, 136) 0%, rgb(249, 88, 100) 25%, rgb(253, 105, 90) 51%, #ec971f 100%);
+      transform: translateX(0);
+      transition: transform 400ms ease-in;
+    }
+    &:hover:after {
+      transform: translateX(-220px);
+    }
+    &:focus {
+      box-shadow: none;
+    }
+    span {
+      display: block;
+      font-weight: bold;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+    @include media-breakpoint-between(md, lg) {
+      width: 180px;
+      min-width: 180px;
+    }
+    @include media-breakpoint-down(md) {
+      position: absolute;
+      top: 20px;
+      left: calc(100% - 150px);
+      width: 60px;
+      min-width: 60px;
+      height: 30px;
+      padding: 0;
+      color: #00b5ff;
+      &:after {
+        content: none;
+      }
+      span {
+        width: 80px;
+        white-space: normal;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: left;
+      }
+      time {
+        display: none;
+      }
+    }
+  }
+}
+@include media-breakpoint-down(md) {
+  body.mobile-nav-open {
+    header {
+      height: 100%;
+      background: linear-gradient(180deg, #ed1e88 30%, #f95864 100%, #fd695a 50%);
+      ul {
+        display: block;
+        position: absolute;
+        top: 70px;
+        left: -5px;
+        margin: 0 7%;
+        text-align: left;
+      }
+      li {
+        display: block;
+        margin-top: 20px;
+      }
+      a {
+        height: 40px;
+        font-size: 22px;
+      }
+      .book-tickets span {
+        color: #FFF;
+        font-weight: 700;
+      }
+      .menu-icon {
+        &:before {
+          content: '\2715';
+        }
+      }
+    }
+  }
+}
