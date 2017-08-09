@@ -97,29 +97,3 @@ function onListening() {
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Purge all Fastly cache after server starts
- */
-
-if (process.env.NODE_ENV === 'staging' || process.env.NODE_ENV === 'production') {
-  // Only run on staging and production
-  if (process.env.FASTLY_API && process.env.FASTLY_SPACE_ID) {
-    // Only run if the proper environment variables are set on the server
-    request({
-      url: `https://api.fastly.com/service/${process.env.FASTLY_SPACE_ID}/purge_all`,
-      method: 'POST',
-      headers: {
-        'Fastly-Key': process.env.FASTLY_API,
-        Accept: 'application/json',
-      },
-    }, (error, response, body) => {
-      if (error) {
-        logger.log('error', error);
-      } else {
-        logger.log('info', 'Fastly Cache Purged');
-        logger.log('info', body);
-      }
-    });
-  }
-}
