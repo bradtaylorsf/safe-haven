@@ -62,3 +62,5 @@ typings/
 *.map
 public
 dist
+.idea/**
+package-lock.json
