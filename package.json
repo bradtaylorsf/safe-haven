@@ -10,7 +10,7 @@
     "start": "pm2 reload --attach ./build-scripts/pm2_www.config.js && pm2 logs all",
     "postinstall": "yarn prod:build",
     "start:dev": "yarn test && NODE_ENV=development nodemon ./build-scripts/www --config",
-    "start:debug": "NODE_ENV=debug nodemon --inspect ./server/scripts/www --config",
+    "start:debug": "NODE_ENV=development nodemon --inspect ./build-scripts/www --config",
     "start:prod": "pm2 reload --attach ./build-scripts/pm2_www.config.js && pm2 logs all",
     "lint:server": "./node_modules/.bin/eslint --ext js server",
     "prod:build": "rimraf public && webpack --progress --config webpack/webpack.config.babel.js",
