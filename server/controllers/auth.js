@@ -30,6 +30,11 @@ const login = (req, res, next) => {
   next();
 };
 
+const edit = (req, res, next) => {
+  // TODO: Add ability to edit a profile of a logged in user
+  next();
+};
+
 
 // Middleware to check if the user is logged in
 const isLoggedIn = (req, res, next) => {
@@ -46,4 +51,5 @@ module.exports = {
   register,
   login,
   isLoggedIn,
+  edit,
 };
