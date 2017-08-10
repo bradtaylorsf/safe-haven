@@ -15,6 +15,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('./models/User');
+const authController = require('./controllers/auth');
 const config = require('./config');
 
 // Connect to Database
@@ -54,7 +55,7 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -92,7 +93,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', webRoutes);
-
 app.use(responder.respond);
 app.use(responder.notFound);
 app.use(responder.error);

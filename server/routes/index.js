@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const authController = require('../controllers/auth');
 
 const router = express.Router();
@@ -23,10 +24,7 @@ router.get('/login', (req, res, next) => {
   next();
 });
 
-router.post('/login', authController.login, (req, res, next) => {
-  res.redirect('/profile');
-  next();
-});
+router.post('/login', passport.authenticate('local'));
 
 router.get('/register', (req, res, next) => {
   res.locals.view = 'auth/register';
@@ -34,7 +32,6 @@ router.get('/register', (req, res, next) => {
 });
 
 router.post('/register', authController.register, (req, res, next) => {
-  res.redirect('/profile');
   next();
 });
 

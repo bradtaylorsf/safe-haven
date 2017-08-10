@@ -1,32 +1,27 @@
-const passport = require('passport');
 const User = require('../models/User');
 
-const register = (accessToken, refreshToken, profile) => {
-  return new Promise((resolve, reject) => {
-    const newUser = new User({ username: profile.username });
-    User.register(newUser, accessToken, (err, user) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(user);
-    });
+const register = (req, res, next) => {
+  User.register(new User({ email: req.body.email }), req.body.password, (err, user) => {
+    if (err) {
+      res.local.error = err;
+      console.log('error while user register!', err);
+      next();
+    } else {
+      req.login(user, (error) => {
+        if (error) {
+          res.local.error = error;
+          next();
+        } else {
+          res.locals.user = user;
+          next();
+        }
+      });
+    }
   });
 };
 
-
-const authenticate = (req, res, next) => {
-  passport.authenticate('local', (err, user) => {
-    req.login(user, (error) => {
-      if (error) {
-        next(error);
-      } else {
-        res.redirect('/profile');
-      }
-    });
-  })(req, res);
-};
-
-const login = (req, res, next) => {
+const edit = (req, res, next) => {
+  // TODO: Add ability to edit a profile of a logged in user
   next();
 };
 
@@ -42,8 +37,6 @@ const isLoggedIn = (req, res, next) => {
 };
 
 module.exports = {
-  authenticate,
   register,
-  login,
   isLoggedIn,
 };

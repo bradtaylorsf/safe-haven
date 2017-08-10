@@ -19,9 +19,6 @@ function Responder(config) {
       } else {
         res.status(500);
       }
-      res.locals.layout = 'wrapper';
-      res.locals.view = '404';
-      res.locals.bodyClass = 'pg404 gradient';
     }
   };
 
@@ -31,40 +28,13 @@ function Responder(config) {
    * @return {Response}     Sends the JSON to the browser
    */
   const json = (res) => {
+    status(res);
     if (!_.isUndefined(res.locals.error)) {
       res.status(res.locals.error.code);
       logger.log('error', 'responded in json');
       logger.log('error', res.locals);
     }
     res.json(res.locals);
-  };
-
-  /**
-   * Used to respond to the browser in HTML format
-   * @param  {Object} res https://expressjs.com/en/api.html#req
-   * @return {response}     Sends the compiles handlebars template to the browser
-   */
-  const html = (res) => {
-    status(res);
-    logger.log('info', `TEMPLATE: ${res.locals.view}`);
-    res.render(res.locals.view, res.locals);
-  };
-
-  /**
-   * Used to determine if the response should be in JSON
-   * @param  {Object}  req https://expressjs.com/en/api.html#req
-   * @return {Boolean}     Will return true if the route starts with /api or if query debug=true
-   */
-  const isJson = (req) => {
-    /* Check if the path starts with /api
-    * Will also return JSON if the user adds ?debug=true
-    * in the development environment
-    */
-    if (_.startsWith(req.originalUrl, '/api/') ||
-        (config.server.env !== 'production' && req.query.debug)) {
-      return true;
-    }
-    return false;
   };
 
   /**
@@ -78,13 +48,8 @@ function Responder(config) {
   this.respond = (req, res, next) => {
     logger.log('info', `Responding to: ${req.originalUrl}`);
     logger.log('info', `Environment: ${config.server.env}`);
-    if (isJson(req)) {
-      json(res);
-    } else if (!_.isEmpty(res.locals.view)) {
-      html(res);
-    } else {
-      next();
-    }
+    res.locals.user = res.locals.user || req.user || false;
+    json(res);
   };
 
   /**
@@ -107,13 +72,7 @@ function Responder(config) {
         message: 'Unknown error occured',
       };
     }
-
-    logger.log('error', err);
-    if (isJson(req)) {
-      json(res);
-    } else {
-      html(res);
-    }
+    json(res);
   };
 
   /**
