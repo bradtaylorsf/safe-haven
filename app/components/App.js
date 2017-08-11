@@ -1,17 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { main } from '../styles/main.scss';
-import Routes from '../routes';
 import Navbar from './Navbar';
 
-const App = () =>
+const App = props =>
 (
   <div>
     <h1>Safe Haven</h1>
     <Navbar />
     <footer className = {main} />
-    { Routes }
+    { props.children }
   </div>
 );
 
 
-export default App;
+// Which props do we want to inject, given the global state?
+function select(state) {
+  return {
+    data: state,
+  };
+}
+
+// Wrap the component to inject dispatch and state into it
+export default connect(select)(App);
