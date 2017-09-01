@@ -2,13 +2,27 @@
   "env": {
   	"browser": true,
     "node": true,
-    "es6": true,
-    "jquery": true,
+    "es6": true
   },
-  "extends": "airbnb-base",
+  "parserOptions": {
+    "ecmaFeatures": {
+        "jsx": true
+    }
+  },
+  "extends": "airbnb",
   "rules": {
+    "strict":0,
+    "jsx-a11y/href-no-hash": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "no-param-reassign": [2, { "props": false }],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-underscore-dangle": 0,
+    "react/forbid-prop-types": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "react/jsx-no-undef": 1,
+    "react/jsx-equals-spacing": [1, "always"],
+    "react/prop-types": [1, {"ignore": ["children"]} ],
+    "react/jsx-closing-bracket-location": [2, {"location": "after-props"}]
+
   },
   "globals": {
     "_": true,

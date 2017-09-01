@@ -6,10 +6,12 @@
         "browsers": ["last 2 versions", "ie >= 11"]
       }
     }],
-    ["es2015", {"modules": false}],
-    "stage-0"
+    "es2015",
+    "stage-0",
+    "react"
   ],
   "plugins": [
+    "react-hot-loader/babel"
   ],
   "env": {
     "test": {
